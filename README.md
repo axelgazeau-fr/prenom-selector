@@ -50,14 +50,24 @@ vercel --prod
 
 ### Modifier les prénoms
 
-Dans `app/page.tsx`, ligne 8 :
+Dans `app/page.tsx`, ligne 7 :
 ```typescript
-const prenoms = ['lynda', 'raphael', 'marion']
+const prenoms = ['raphael', 'papa', 'maman', 'marion', 'guillaume', 'valentine']
 ```
 
-### Changer l'image de révélation
+### Ajouter les images personnalisées
 
-Placez votre image dans le dossier `public/` et nommez-la `celebration.jpg`, ou modifiez le chemin dans `app/waiting/page.tsx`, ligne 91.
+Chaque personne verra une image différente ! Placez vos images dans le dossier `public/` avec les noms suivants :
+- `raphael.jpg` - Image pour Raphael
+- `papa.jpg` - Image pour Papa
+- `maman.jpg` - Image pour Maman  
+- `marion.jpg` - Image pour Marion
+- `guillaume.jpg` - Image pour Guillaume
+- `valentine.jpg` - Image pour Valentine
+
+**Important :** Les images doivent avoir exactement ces noms (en minuscules) avec l'extension `.jpg`. Vous pouvez aussi utiliser `.png` en modifiant l'extension dans le code.
+
+Si une image n'est pas trouvée, un placeholder coloré avec le prénom de la personne sera affiché automatiquement.
 
 ### Personnaliser les couleurs
 
@@ -180,11 +190,11 @@ Réinitialise tous les statuts (utile pour les tests).
 
 ## 🎯 Utilisation
 
-1. Ouvrez l'application sur 3 navigateurs différents (ou onglets en navigation privée)
-2. Chaque utilisateur sélectionne son prénom dans la liste déroulante
+1. Ouvrez l'application sur 6 navigateurs différents (ou onglets en navigation privée)
+2. Chaque utilisateur sélectionne son prénom dans la liste déroulante (Raphael, Papa, Maman, Marion, Guillaume, Valentine)
 3. Après sélection, l'utilisateur est redirigé vers la page d'attente
 4. La page affiche en temps réel qui est connecté
-5. Quand les 3 utilisateurs sont connectés, l'image de célébration apparaît !
+5. Quand les 6 utilisateurs sont connectés, chaque personne voit son image personnalisée ! 🎉
 
 ## 📝 Licence
 

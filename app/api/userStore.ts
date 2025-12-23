@@ -2,16 +2,22 @@
 // En production, utilisez Redis, une base de données, ou Vercel KV
 
 interface UserStatus {
-  lynda: boolean
   raphael: boolean
+  papa: boolean
+  maman: boolean
   marion: boolean
+  guillaume: boolean
+  valentine: boolean
 }
 
 class UserStore {
   private users: UserStatus = {
-    lynda: false,
     raphael: false,
-    marion: false
+    papa: false,
+    maman: false,
+    marion: false,
+    guillaume: false,
+    valentine: false
   }
 
   getAll(): UserStatus {
@@ -25,9 +31,12 @@ class UserStore {
 
   reset(): UserStatus {
     this.users = {
-      lynda: false,
       raphael: false,
-      marion: false
+      papa: false,
+      maman: false,
+      marion: false,
+      guillaume: false,
+      valentine: false
     }
     return this.getAll()
   }

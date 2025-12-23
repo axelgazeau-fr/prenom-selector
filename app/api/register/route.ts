@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     const { prenom } = await request.json()
     
-    if (!prenom || !['lynda', 'raphael', 'marion'].includes(prenom.toLowerCase())) {
+    if (!prenom || !['raphael', 'papa', 'maman', 'marion', 'guillaume', 'valentine'].includes(prenom.toLowerCase())) {
       return NextResponse.json(
         { error: 'Prénom invalide' },
         { status: 400 }
@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     }
     
     // Enregistrer l'utilisateur
-    const users = userStore.setUser(prenom.toLowerCase() as 'lynda' | 'raphael' | 'marion', true)
+    const users = userStore.setUser(prenom.toLowerCase() as 'raphael' | 'papa' | 'maman' | 'marion' | 'guillaume' | 'valentine', true)
     
     return NextResponse.json({
       success: true,
