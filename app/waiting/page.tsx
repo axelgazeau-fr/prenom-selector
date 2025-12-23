@@ -30,11 +30,8 @@ function WaitingContent() {
   useEffect(() => {
     if (!prenom) return
 
-    // Connexion au serveur WebSocket (Pusher pour Vercel)
-    // Pour le développement local, vous pouvez utiliser Socket.IO
     const connectWebSocket = async () => {
       try {
-        // Appel à notre API route pour s'enregistrer
         const response = await fetch('/api/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -45,13 +42,11 @@ function WaitingContent() {
         setUserStatus(data.users)
         setIsConnected(true)
 
-        // Polling pour les mises à jour (alternative à WebSocket pour Vercel)
         const interval = setInterval(async () => {
           const statusResponse = await fetch('/api/status')
           const statusData = await statusResponse.json()
           setUserStatus(statusData.users)
           
-          // Vérifier si tous les utilisateurs sont connectés
           const allConnected = Object.values(statusData.users).every(Boolean)
           if (allConnected && !showImage) {
             setShowImage(true)
@@ -65,10 +60,9 @@ function WaitingContent() {
     }
 
     connectWebSocket()
-  }, [prenom])
+  }, [prenom, showImage])
 
   useEffect(() => {
-    // Vérifier si tous les utilisateurs sont connectés
     const allConnected = Object.values(userStatus).every(Boolean)
     if (allConnected && !showImage) {
       setTimeout(() => setShowImage(true), 500)
@@ -85,7 +79,7 @@ function WaitingContent() {
           <>
             <div className={styles.statusBadge}>
               <div className={`${styles.statusDot} ${isConnected ? styles.connected : ''}`} />
-              {isConnected ? 'Connecté' : 'Connexion...'}
+              {isConnected ? 'Connecte' : 'Connexion...'}
             </div>
 
             <h1 className={styles.title}>
@@ -96,7 +90,7 @@ function WaitingContent() {
             <p className={styles.subtitle}>
               {connectedCount < 6 
                 ? 'En attente des autres participants...'
-                : 'Tout le monde est là ! Révélation en cours...'}
+                : 'Tout le monde est la ! Revelation en cours...'}
             </p>
 
             <div className={styles.statusGrid}>
@@ -132,14 +126,14 @@ function WaitingContent() {
                 />
               </div>
               <p className={styles.progressText}>
-                {connectedCount} / 6 participants connectés
+                {connectedCount} / 6 participants connectes
               </p>
             </div>
           </>
         ) : (
           <div className={styles.reveal}>
             <h2 className={styles.revealTitle}>
-              ✨ Votre image personnalisée ! ✨
+              Votre image personnalisee !
             </h2>
             <div className={styles.imageContainer}>
               <img 
@@ -147,14 +141,12 @@ function WaitingContent() {
                 alt={`Image pour ${prenomCapitalized}`} 
                 className={styles.revealImage}
                 onError={(e) => {
-                  // Fallback si l'image n'existe pas
-                  e.currentTarget.src = `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect fill="%23667eea" width="400" height="400"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="40" fill="white"%3E🎉 ${prenomCapitalized} ! 🎉%3C/text%3E%3C/svg%3E`
+                  e.currentTarget.src = `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect fill="%23667eea" width="400" height="400"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="40" fill="white"%3E${prenomCapitalized} !%3C/text%3E%3C/svg%3E`
                 }}
               />
             </div>
             <p className={styles.revealMessage}>
-              Merci d'avoir participé, {prenomCapitalized} !
-            </p>
+              Merci d'avoir participe, {prenomCapitalized} !
             </p>
           </div>
         )}
