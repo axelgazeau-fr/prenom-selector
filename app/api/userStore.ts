@@ -10,27 +10,39 @@ interface UserStatus {
   valentine: boolean
 }
 
+// Utiliser global pour persister l'état entre les invocations
+declare global {
+  var userStatusStore: UserStatus | undefined
+}
+
 class UserStore {
-  private users: UserStatus = {
-    raphael: false,
-    papa: false,
-    maman: false,
-    marion: false,
-    guillaume: false,
-    valentine: false
+  private getUsers(): UserStatus {
+    if (!global.userStatusStore) {
+      global.userStatusStore = {
+        raphael: false,
+        papa: false,
+        maman: false,
+        marion: false,
+        guillaume: false,
+        valentine: false
+      }
+    }
+    return global.userStatusStore
   }
 
   getAll(): UserStatus {
-    return { ...this.users }
+    return { ...this.getUsers() }
   }
 
   setUser(prenom: keyof UserStatus, status: boolean): UserStatus {
-    this.users[prenom] = status
+    const users = this.getUsers()
+    users[prenom] = status
+    global.userStatusStore = users
     return this.getAll()
   }
 
   reset(): UserStatus {
-    this.users = {
+    global.userStatusStore = {
       raphael: false,
       papa: false,
       maman: false,
@@ -42,11 +54,11 @@ class UserStore {
   }
 
   allConnected(): boolean {
-    return Object.values(this.users).every(Boolean)
+    return Object.values(this.getUsers()).every(Boolean)
   }
 
   getCount(): number {
-    return Object.values(this.users).filter(Boolean).length
+    return Object.values(this.getUsers()).filter(Boolean).length
   }
 }
 

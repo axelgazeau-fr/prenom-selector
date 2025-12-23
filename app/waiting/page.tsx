@@ -30,6 +30,8 @@ function WaitingContent() {
   useEffect(() => {
     if (!prenom) return
 
+    let interval: NodeJS.Timeout
+
     const connectWebSocket = async () => {
       try {
         const response = await fetch('/api/register', {
@@ -42,7 +44,7 @@ function WaitingContent() {
         setUserStatus(data.users)
         setIsConnected(true)
 
-        const interval = setInterval(async () => {
+        interval = setInterval(async () => {
           const statusResponse = await fetch('/api/status')
           const statusData = await statusResponse.json()
           setUserStatus(statusData.users)
@@ -52,22 +54,26 @@ function WaitingContent() {
             setShowImage(true)
           }
         }, 1000)
-
-        return () => clearInterval(interval)
       } catch (error) {
         console.error('Erreur de connexion:', error)
       }
     }
 
     connectWebSocket()
-  }, [prenom, showImage])
+
+    return () => {
+      if (interval) {
+        clearInterval(interval)
+      }
+    }
+  }, [prenom])
 
   useEffect(() => {
     const allConnected = Object.values(userStatus).every(Boolean)
-    if (allConnected && !showImage) {
+    if (allConnected) {
       setTimeout(() => setShowImage(true), 500)
     }
-  }, [userStatus, showImage])
+  }, [userStatus])
 
   const prenomCapitalized = prenom.charAt(0).toUpperCase() + prenom.slice(1)
   const connectedCount = Object.values(userStatus).filter(Boolean).length
