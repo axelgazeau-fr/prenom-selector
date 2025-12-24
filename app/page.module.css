@@ -75,6 +75,7 @@
   display: inline-block;
   animation: shimmer 3s ease-in-out infinite;
   background-size: 200% 200%;
+  margin-left: 10px;
 }
 
 @keyframes shimmer {
@@ -236,16 +237,16 @@
   .title {
     font-size: 2.5rem;
   }
-  
+
   .subtitle {
     font-size: 1rem;
   }
-  
+
   .select, .button {
     font-size: 1rem;
     padding: 1rem 1.5rem;
   }
-  
+
   .info {
     flex-direction: column;
     text-align: center;

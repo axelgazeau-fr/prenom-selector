@@ -13,7 +13,7 @@ export default function Home() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (selectedPrenom) {
-      router.push(`/waiting?prenom=${selectedPrenom}`)
+      router.push(`/${selectedPrenom}`)
     }
   }
 
@@ -22,15 +22,11 @@ export default function Home() {
       <div className={styles.container}>
         <div className={styles.decorCircle} />
         <div className={styles.decorCircle2} />
-        
+
         <h1 className={styles.title}>
           Choisissez votre
           <span className={styles.titleAccent}> prénom</span>
         </h1>
-        
-        <p className={styles.subtitle}>
-          Une expérience magique vous attend de l'autre côté
-        </p>
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.selectWrapper}>
@@ -50,8 +46,8 @@ export default function Home() {
             <div className={styles.selectArrow}>▼</div>
           </div>
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className={styles.button}
             disabled={!selectedPrenom}
           >
@@ -65,7 +61,7 @@ export default function Home() {
             <circle cx="12" cy="12" r="10" strokeWidth="2"/>
             <path d="M12 16v-4M12 8h.01" strokeWidth="2" strokeLinecap="round"/>
           </svg>
-          <span>Attendez que tout le monde ait choisi pour révéler la surprise</span>
+          <span>Chaque personne decouvrira son image personnalisee</span>
         </div>
       </div>
     </main>

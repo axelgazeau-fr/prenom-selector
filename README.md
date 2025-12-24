@@ -5,10 +5,11 @@ Une application Next.js interactive où plusieurs utilisateurs sélectionnent le
 ## ✨ Fonctionnalités
 
 - 🎨 Design moderne avec animations fluides
-- 👥 Suivi en temps réel des connexions utilisateurs
-- 🔄 Système de polling pour synchronisation
-- 🎉 Révélation d'image quand tous les participants sont connectés
+- 👤 Page personnalisée pour chaque utilisateur
+- 🖼️ Image unique pour chaque prénom
+- ⬇️ Possibilité de télécharger son image
 - 📱 Design responsive (mobile & desktop)
+- ⚡ Pas de système de synchronisation - chacun voit son image immédiatement !
 
 ## 🚀 Installation
 
@@ -85,30 +86,29 @@ Les couleurs sont définies dans `app/globals.css` avec des variables CSS :
 
 - **Next.js 14** : Framework React avec App Router
 - **TypeScript** : Typage statique
-- **API Routes** : Endpoints pour la gestion des utilisateurs
-- **Polling** : Alternative à WebSocket pour Vercel
+- **Routes dynamiques** : Pages personnalisées pour chaque prénom
 - **CSS Modules** : Styles scoped par composant
+- **Image fallback** : SVG généré automatiquement si l'image n'existe pas
 
 ## 📁 Structure du projet
 
 ```
 prenom-selector/
 ├── app/
-│   ├── api/
-│   │   ├── register/
-│   │   │   └── route.ts       # Enregistrement des utilisateurs
-│   │   ├── status/
-│   │   │   └── route.ts       # Statut des connexions
-│   │   └── userStore.ts       # Gestion de l'état partagé
-│   ├── waiting/
-│   │   ├── page.tsx           # Page d'attente avec polling
-│   │   └── page.module.css    # Styles de la page d'attente
+│   ├── [prenom]/
+│   │   ├── page.tsx           # Page personnalisée dynamique
+│   │   └── page.module.css    # Styles de la page personnalisée
 │   ├── layout.tsx             # Layout principal
 │   ├── globals.css            # Styles globaux
-│   ├── page.tsx               # Page d'accueil
+│   ├── page.tsx               # Page d'accueil (sélecteur)
 │   └── page.module.css        # Styles de la page d'accueil
 ├── public/
-│   └── celebration.jpg        # Image de révélation (à ajouter)
+│   ├── raphael.jpg            # Image de Raphael
+│   ├── papa.jpg               # Image de Papa
+│   ├── maman.jpg              # Image de Maman
+│   ├── marion.jpg             # Image de Marion
+│   ├── guillaume.jpg          # Image de Guillaume
+│   └── valentine.jpg          # Image de Valentine
 ├── package.json
 ├── tsconfig.json
 └── next.config.js
@@ -190,11 +190,11 @@ Réinitialise tous les statuts (utile pour les tests).
 
 ## 🎯 Utilisation
 
-1. Ouvrez l'application sur 6 navigateurs différents (ou onglets en navigation privée)
-2. Chaque utilisateur sélectionne son prénom dans la liste déroulante (Raphael, Papa, Maman, Marion, Guillaume, Valentine)
-3. Après sélection, l'utilisateur est redirigé vers la page d'attente
-4. La page affiche en temps réel qui est connecté
-5. Quand les 6 utilisateurs sont connectés, chaque personne voit son image personnalisée ! 🎉
+1. Partagez le lien de l'application avec les participants
+2. Chaque personne sélectionne son prénom dans la liste déroulante (Raphael, Papa, Maman, Marion, Guillaume, Valentine)
+3. Après sélection, l'utilisateur est immédiatement redirigé vers sa page personnalisée
+4. Chaque personne voit son image unique ! 🎉
+5. Possibilité de télécharger l'image ou de retourner à l'accueil
 
 ## 📝 Licence
 

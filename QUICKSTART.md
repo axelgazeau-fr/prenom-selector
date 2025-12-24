@@ -47,11 +47,11 @@ Suivez les instructions à l'écran. Votre site sera en ligne en ~60 secondes ! 
 
 ## 🎮 Comment utiliser
 
-1. **Partagez le lien** avec les 6 participants
+1. **Partagez le lien** avec les participants
 2. Chacun **ouvre le lien** et **sélectionne son prénom**
-3. Tout le monde attend sur la page d'attente
-4. Dès que les 6 personnes sont connectées...
-5. **MAGIE !** Chacun voit son image personnalisée ! ✨
+3. **Redirection immédiate** vers une page personnalisée
+4. Chaque personne voit **son image unique** ! ✨
+5. Possibilité de télécharger l'image
 
 ## 🎯 C'est tout !
 
@@ -82,11 +82,6 @@ npm run lint
 - ✅ Vérifiez le nom du fichier (tout en minuscules)
 - ✅ Vérifiez l'extension (.jpg)
 - ✅ Rafraîchissez la page (Ctrl+F5)
-
-### Le compteur est bloqué à X/6
-- ✅ Ouvrez en navigation privée
-- ✅ Utilisez différents navigateurs
-- ✅ Redémarrez le serveur
 
 ### Erreur lors du build
 ```bash
@@ -119,18 +114,16 @@ Puis mettez à jour les mêmes noms dans :
 - `app/page.tsx` - Page d'accueil
 - `app/waiting/page.tsx` - Page d'attente
 
-## 📱 Tester avec plusieurs utilisateurs
+## 📱 Tester
 
-### Option 1 : Navigation privée
-Ouvrez 6 fenêtres en navigation privée dans le même navigateur.
+### Option 1 : Onglets multiples
+Ouvrez plusieurs onglets et testez avec différents prénoms.
 
-### Option 2 : Navigateurs différents
-Testez sur Chrome, Firefox, Safari, Edge, etc.
+### Option 2 : Navigation privée
+Testez dans des fenêtres de navigation privée.
 
 ### Option 3 : Appareils différents
-Partagez l'URL local sur votre réseau :
-1. Trouvez votre IP locale : `ipconfig` (Windows) ou `ifconfig` (Mac/Linux)
-2. Accédez depuis un autre appareil : `http://VOTRE-IP:3000`
+Testez sur téléphone, tablette, ordinateur, etc.
 
 ## 🌐 Accès depuis d'autres appareils
 
