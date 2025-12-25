@@ -30,6 +30,7 @@ interface UserStatus {
   raphael: boolean
   papa: boolean
   maman: boolean
+  jean-louis: boolean
   marion: boolean
   guillaume: boolean
   valentine: boolean
@@ -39,6 +40,7 @@ const DEFAULT_USERS: UserStatus = {
   raphael: false,
   papa: false,
   maman: false,
+  jean-louis: false,
   marion: false,
   guillaume: false,
   valentine: false
@@ -84,13 +86,13 @@ Mettez à jour les routes API pour être async :
 export async function POST(request: NextRequest) {
   try {
     const { prenom } = await request.json()
-    
+
     if (!prenom || !['raphael', 'papa', 'maman', 'marion', 'guillaume', 'valentine'].includes(prenom.toLowerCase())) {
       return NextResponse.json({ error: 'Prenom invalide' }, { status: 400 })
     }
-    
+
     const users = await userStore.setUser(prenom.toLowerCase() as keyof UserStatus, true)
-    
+
     return NextResponse.json({
       success: true,
       users,
@@ -118,7 +120,7 @@ export async function GET() {
   const users = await userStore.getAll()
   const allConnected = await userStore.allConnected()
   const count = await userStore.getCount()
-  
+
   return NextResponse.json({
     users,
     allConnected,
@@ -168,7 +170,7 @@ Créez `app/api/stream/route.ts` :
 ```typescript
 export async function GET() {
   const encoder = new TextEncoder()
-  
+
   const stream = new ReadableStream({
     async start(controller) {
       const sendUpdate = async () => {
@@ -176,9 +178,9 @@ export async function GET() {
         const data = JSON.stringify({ users, allConnected: await userStore.allConnected() })
         controller.enqueue(encoder.encode(`data: ${data}\n\n`))
       }
-      
+
       const interval = setInterval(sendUpdate, 2000)
-      
+
       // Cleanup après 5 minutes
       setTimeout(() => {
         clearInterval(interval)
@@ -186,7 +188,7 @@ export async function GET() {
       }, 300000)
     }
   })
-  
+
   return new Response(stream, {
     headers: {
       'Content-Type': 'text/event-stream',
@@ -211,7 +213,7 @@ useEffect(() => {
 
   // Server-Sent Events
   const eventSource = new EventSource('/api/stream')
-  
+
   eventSource.onmessage = (event) => {
     const data = JSON.parse(event.data)
     setUserStatus(data.users)
@@ -278,7 +280,7 @@ Pour déboguer sur Vercel :
    ```bash
    # Status
    curl https://votre-app.vercel.app/api/status
-   
+
    # Register
    curl -X POST https://votre-app.vercel.app/api/register \
      -H "Content-Type: application/json" \

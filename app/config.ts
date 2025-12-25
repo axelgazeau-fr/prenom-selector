@@ -3,23 +3,23 @@
 
 export const CONFIG = {
   // Liste des prénoms disponibles
-  prenoms: ['raphael', 'papa', 'maman', 'marion', 'guillaume', 'valentine'],
-  
+  prenoms: ['jean-louis', 'maman', 'valentine'],
+
   // Nombre total de participants
   totalParticipants: 6,
-  
+
   // Extension des images personnalisées
   imageExtension: 'jpg', // Peut être 'jpg', 'png', 'webp', etc.
-  
+
   // Dossier des images (relatif au dossier public)
   imagesFolder: '/',
-  
+
   // Intervalle de polling en millisecondes (1000 = 1 seconde)
   pollingInterval: 1000,
-  
+
   // Délai avant d'afficher l'image après que tout le monde soit connecté (en ms)
   revealDelay: 500,
-  
+
   // Titres et messages
   messages: {
     homeTitle: 'Choisissez votre',
@@ -34,7 +34,7 @@ export const CONFIG = {
     statusConnected: 'Connecté',
     statusConnecting: 'Connexion...',
   },
-  
+
   // Couleurs (utilisées dans les fallbacks SVG)
   colors: {
     primary: '#667eea',

@@ -4,7 +4,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import styles from './page.module.css'
 
-const validPrenoms = ['raphael', 'papa', 'maman', 'marion', 'guillaume', 'valentine']
+const validPrenoms = ['maman', 'jean-louis', 'valentine']
 
 export default function PrenomPage() {
   const params = useParams()

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from './page.module.css'
 
-const prenoms = ['raphael', 'papa', 'maman', 'marion', 'guillaume', 'valentine']
+const prenoms = ['jean-louis', 'maman', 'valentine']
 
 export default function Home() {
   const [selectedPrenom, setSelectedPrenom] = useState('')
