@@ -3,7 +3,7 @@
 
 export const CONFIG = {
   // Liste des prénoms disponibles
-  prenoms: ['jojo', 'angelique', 'valentine'],
+  prenoms: ['jojo', 'angelique', 'gilles','nathalie', 'valentine'],
 
   // Nombre total de participants
   totalParticipants: 6,
